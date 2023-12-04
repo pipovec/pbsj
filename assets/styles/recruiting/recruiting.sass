@@ -1,0 +1,45 @@
+@use '../variables'
+
+@import "filter"
+@import "table"
+
+body
+  display: grid
+
+.homepage-container
+  display: grid
+  grid-row: auto
+  margin: 0 auto
+  font-family: "Nunito", sans-serif
+  font-weight: 200
+
+  .homepage-container__title > h1
+    font-size: 4rem
+    color: variables.$text-color-grey
+
+  .homepage-container__links
+    display: grid
+
+    > div
+      border-radius: 0.25rem
+      background-color: variables.$text-color-grey
+      margin: 0.50rem 1rem
+      padding: 1rem
+      box-shadow: 4px 5px 10px rgba(99,107,111,0.75)
+
+  .hover-effect
+    border-bottom: 2px solid variables.$text-color-grey
+    transition: border-bottom 0.3s ease
+
+    &:hover
+      border-bottom: 2px solid white
+
+  .homepage-container__link
+    display: block
+    text-align: center
+    font-size: 2rem
+    text-decoration: none
+    color: white
+
+
+

@@ -1,0 +1,38 @@
+
+//@font-face {
+//  font-family: 'Nunito';
+//  src: url('/fonts/Nunito-Regular.woff') format('woff');
+//  src: url('/fonts/Nunito-Regular.ttf') format('truetype');
+//}
+
+// Body
+$body-bg: #f8fafc;
+
+// Typography
+$font-family-sans-nunito: "Nunito", sans-serif;
+$font-size-base: 0.9rem;
+$line-height-base: 1.6;
+
+$border-radius: 3px;
+$border-radius-top: 3px 3px 0 0;
+$border-radius-down: 0 0 3px 3px;
+$border-color-grey: #aeaeae;
+$margin-all: 3px;
+$padding-all: 5px;
+$margin-left-right: 0 1rem 0 1rem;
+
+$background-color-linear-gradient-grey: linear-gradient(180deg, rgba(128,128,128,1) 11%, rgba(85,85,85,1) 70%);
+$background-color-linear-gradient-grey-light: linear-gradient(180deg, rgba(85,85,85,1) 33%, rgba(97,97,97,1) 66%);
+$background-color-linear-gradient-green: linear-gradient(0deg, rgba(39,158,0,1) 11%, rgba(50,167,12,1) 50%, rgba(76,193,38,1) 90%);
+$background-color-grey-light: #d0d0d0;
+
+$text-color-white: white;
+$text-color-hover: black;
+$text-color-grey: #636b6f;
+$text-color-book-comment-meta: black;
+
+$desktop-full: 1920px;
+$desktop-midi: 1368px;
+$mobile-h: 420px;
+$mobile-l: 360px;
+$notepad: 768px;

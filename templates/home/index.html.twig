@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}PBJS STAT{% endblock %}
+
+ {% block stylesheets %}
+     {{ parent() }}
+     {{ encore_entry_link_tags('recruiting') }}
+ {% endblock %}
+
+{% block body %}
+<div class="homepage-container">
+    <div class="homepage-container__title">
+        <h1>PBSJ Stat</h1>
+    </div>
+    <div class="homepage-container__links-wrapper">
+        <div class="homepage-container__links">
+            <div>
+                <div class="hover-effect">
+                    <a class="homepage-container__link" href="{{ path('app_home') }}">Recruiting</a>
+                </div>
+            </div>
+            <div>
+                <div class="hover-effect">
+                <a class="homepage-container__link" href="{{ path('app_home') }}">Abflug</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

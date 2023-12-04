@@ -1,0 +1,52 @@
+@use '../variables'
+
+svg.filter-icon
+  color: white
+  width: 2rem
+  vertical-align: middle
+  fill: currentColor
+  overflow: hidden
+
+.filters-container
+  display: flex
+  flex-direction: column
+  flex-wrap: wrap
+  gap: 1rem
+  padding: 1rem
+  border-radius: 0  0  0 0.4rem
+  width: 33%
+  background: lightgray
+  position: absolute
+  top: 6rem
+  right: 0
+
+  input
+    background-color: lightgray
+    color: black
+    font-weight: bold
+    border: 1px black solid
+    border-radius: 0.15rem
+    padding: 0.4rem
+    text-align: center
+
+  label
+    color: #555555
+    font-style: italic
+    margin-right: 1rem
+    align-self: center
+
+
+  .filters-container__wn
+    display: flex
+    flex-direction: row
+    flex-wrap: wrap
+
+    input
+      width: 8rem
+
+    input:not(last)
+      margin-right: 1rem
+
+
+  .filters-container__filter-wrapper
+    display: grid
