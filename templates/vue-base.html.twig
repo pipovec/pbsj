@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Boris Fekar">
+    <meta name="email" content="info@fpcstat.cz">
+    <meta name="google-site-verification" content="Zj-ImjHS46hTS5AtXCBxovl5UbXSDDBECNrygomGq1Q"/>
+    <title>{% block title %}PBSJ | STAT{% endblock %}</title>
+    <link rel="icon"
+          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    {% block stylesheets %}
+        {{ encore_entry_link_tags('style') }}
+        {{ encore_entry_link_tags('menu') }}
+        {{ encore_entry_link_tags('recruiting') }}
+    {% endblock %}
+
+    {% block javascripts %}
+    {% endblock %}
+
+</head>
+<body>
+<header class="menu-bar">
+    <div class="menu-brand">
+        <a class="brand" href="{{ path('app_home') }}">
+            PBSJ Comnunity
+        </a>
+    </div>
+    <nav class="nav-items">
+        <a class="nav-item" href="{{ path('app_recruiting') }}">Recruiting</a>
+        <a class="nav-item" href="{{ path('app_home') }}">Abflug</a>
+        <a class="nav-item" target="_blank" href="https://wn8-calculator.fpcstat.cz/">WN8 calculator</a>
+    </nav>
+</header>
+{% block content %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,23 @@
+{% extends 'vue-base.html.twig' %}
+
+{% block title %}Recruiting{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('recruiting') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('vue-recruiting') }}
+{% endblock %}
+
+{% block content %}
+    <main>
+    <noscript>
+        <strong>
+            We're sorry but recruiting  doesn't work properly without JavaScript enabled. Please enable it to continue.
+        </strong>
+    </noscript>
+    <div id="recruiting"></div>
+    </main>
+{% endblock %}

@@ -7,14 +7,8 @@ module.exports = {
     theme: {
         extend: {},
         fontFamily: {
-            sans: ['Open Sans', 'sans-serif']
+            sans: ['Nunito', 'sans-serif']
         }
-    },
-    variants: {
-        extend: {
-            padding: ['hover'],
-            maxHeight: ['focus'],
-        },
     },
     plugins: [],
     corePlugins: {},

@@ -21,6 +21,9 @@ Encore
 
     .addStyleEntry('style', './assets/styles/tailwind.css')
     .addStyleEntry('recruiting', './assets/styles/recruiting/recruiting.sass')
+    .addStyleEntry('menu', './assets/styles/menu.sass')
+
+    .addEntry('vue-recruiting', './assets/vue/Recruiting/recruiting.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()
@@ -57,7 +60,12 @@ Encore
     .enableSassLoader()
     .splitEntryChunks()
     .enableVueLoader()
-
+    .enablePostCssLoader((options) => {
+        // new option outlined here https://webpack.js.org/loaders/postcss-loader/
+        options.postcssOptions = {
+            config: './postcss.config.js',
+        }
+    })
 
     // uncomment if you use TypeScript
     //.enableTypeScriptLoader()
