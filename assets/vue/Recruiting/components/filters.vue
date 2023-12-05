@@ -28,7 +28,7 @@
         <input type="checkbox" name="tank_1" v-model="store.tank_1" v-on:change="reloadPlayers()">
         <label for="tank_1" class="ml-1 leading-normal">Obj.279r</label>
         <input type="checkbox" name="tank_2" v-model="store.tank_2" v-on:change="reloadPlayers()">
-        <label for="tank_2" class="ml-1">Obj.709</label>
+        <label for="tank_2" class="ml-1">Obj.907</label>
         <input type="checkbox" name="tank_3" v-model="store.tank_3" v-on:change="reloadPlayers()">
         <label for="tank_3" class="ml-1">T95/FV4201 CHIEFTAIN</label>
       </div>
