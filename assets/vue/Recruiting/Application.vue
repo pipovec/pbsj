@@ -8,7 +8,7 @@
      <div class="flex flex-wrap content-center">
        Total players:
        <span class="font-black flex ml-1"
-       >{{ recruiting.players['hydra:totalItems']}}</span>
+       >{{ store.players['hydra:totalItems']}}</span>
        </div>
     </div>
   </div>
@@ -20,32 +20,14 @@
 <script setup>
 import {onBeforeMount, ref} from "vue";
 import { recruitingStore } from "./store";
-import axios from "axios";
 import Filter from "./components/filters.vue";
 import Table from "./components/table.vue";
 
-  const recruiting = recruitingStore()
+  const store = recruitingStore()
 
   const msg = ref('Deutsche Freispieler')
 
   onBeforeMount(() => {
-    loadPlayers();
+    store.getPlayers()
   })
-
-  function loadPlayers() {
-    const params = new URLSearchParams([
-        ['tank_3', 1]
-    ])
-    axios.get(
-        recruiting.baseApiUrl+'/recruiting-germany',
-        {
-          headers: {'accept': 'application/ld+json'},
-          params: params
-        }, {
-
-        }).then(response => {
-          recruiting.players = response.data
-    })
-  }
-
 </script>

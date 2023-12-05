@@ -21,11 +21,11 @@
         <td></td>
         <td></td>
         <td></td>
-        <td></td>
-        <td></td>
-        <td v-html="tank(player.tank_1)"></td>
-        <td v-html="tank(player.tank_1)"></td>
-        <td v-html="tank(player.tank_1)"></td>
+        <td v-html="isTrue(player.combat_officer)"></td>
+        <td v-html="isTrue(player.personnel_officer)"></td>
+        <td v-html="isTrue(player.tank_1)"></td>
+        <td v-html="isTrue(player.tank_2)"></td>
+        <td v-html="isTrue(player.tank_3)"></td>
       </tr>
     </tbody>
   </table>
@@ -54,7 +54,7 @@
     personnel: 'personnel Officer',
     tank_1: 'Obj.279r',
     tank_2: 'Obj.907',
-    tank_3: 'FV 4201 Chieftain'
+    tank_3: 'T95/FV4201 CHIEFTAIN'
   })
 
   function roundWN(wn8) {
@@ -62,7 +62,7 @@
     return parseFloat(wn8).toFixed(2);
   }
 
-  function tank(value) {
+  function isTrue(value) {
 
     return value ? '<img src="/success-green-check-mark-icon.svg" width="16" alt="success" class="tank"/>'
         : '<img src="/checkbox-cross-red-icon.svg" width="16" alt="cross mark" class="tank"/>';

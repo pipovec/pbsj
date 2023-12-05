@@ -12,17 +12,25 @@
         <label for="wnFrom">
           wn8 from:
         </label>
-        <input type="number" name="wnFrom" value="">
+        <input type="number" name="wnFrom" v-model="store.filterWnFrom" v-on:input="reloadPlayers()">
         <label for="wnTo">
           to:
         </label>
-        <input type="number" name="wnTo" value="">
+        <input type="number" name="wnTo" v-model="store.filterWnTo" v-on:input="reloadPlayers()">
       </div>
       <div class="filters-container__input">
-        <label>
+        <label for="nickname">
           nickname:
         </label>
-        <input type="text">
+        <input type="text" name="nickname" v-model="store.filterNickName" v-on:input="reloadPlayers()">
+      </div>
+      <div class="filters-container__input">
+        <input type="checkbox" name="tank_1" v-model="store.tank_1" v-on:change="reloadPlayers()">
+        <label for="tank_1" class="ml-1 leading-normal">Obj.279r</label>
+        <input type="checkbox" name="tank_2" v-model="store.tank_2" v-on:change="reloadPlayers()">
+        <label for="tank_2" class="ml-1">Obj.709</label>
+        <input type="checkbox" name="tank_3" v-model="store.tank_3" v-on:change="reloadPlayers()">
+        <label for="tank_3" class="ml-1">T95/FV4201 CHIEFTAIN</label>
       </div>
     </div>
   </transition>
@@ -33,9 +41,12 @@ import { recruitingStore } from "../store";
 import {ref} from "vue";
 
 const openFilter = ref(false)
-const filterName = ref('Filter')
 
 const store = recruitingStore()
+
+function reloadPlayers() {
+  store.getPlayers()
+}
 
 </script>
 

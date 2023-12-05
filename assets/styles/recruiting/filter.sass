@@ -14,11 +14,13 @@ svg.filter-icon
   gap: 1rem
   padding: 1rem
   border-radius: 0  0  0 0.4rem
-  width: 33%
+  width: 25%
   background: lightgray
   position: absolute
   top: 6rem
   right: 0
+  z-index: 1
+  font-size: 0.8rem
 
   input
     background-color: lightgray
@@ -26,7 +28,6 @@ svg.filter-icon
     font-weight: bold
     border: 1px black solid
     border-radius: 0.15rem
-    padding: 0.4rem
     text-align: center
 
   label
@@ -34,6 +35,7 @@ svg.filter-icon
     font-style: italic
     margin-right: 1rem
     align-self: center
+    line-height: normal
 
 
   .filters-container__wn
@@ -50,3 +52,9 @@ svg.filter-icon
 
   .filters-container__filter-wrapper
     display: grid
+
+  .filters-container__input
+    display: flex
+    flex-direction: row
+    align-items: center
+
