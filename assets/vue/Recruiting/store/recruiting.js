@@ -5,7 +5,7 @@ export const recruitingStore= defineStore({
     id: 'recruiting',
 
     state: () => ({
-        baseApiUrl: 'http://api2-fpcstat.dock/api',
+        baseApiUrl: 'https://api2.fpcstat.cz/api',
         counter: 42,
         players: {},
         filterWnFrom: 1800,
