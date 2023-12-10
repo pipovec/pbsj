@@ -10,7 +10,10 @@ framework:
         handler_id: null
         cookie_secure: auto
         cookie_samesite: lax
-
+    http_client:
+        default_options:
+            verify_host: false
+            verify_peer: false
     #esi: true
     #fragments: true
     php_errors:

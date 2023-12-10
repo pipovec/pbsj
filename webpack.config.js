@@ -24,6 +24,7 @@ Encore
     .addStyleEntry('menu', './assets/styles/menu.sass')
 
     .addEntry('vue-recruiting', './assets/vue/Recruiting/recruiting.js')
+    .addEntry('vue-departures', './assets/vue/Departures/departures.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()

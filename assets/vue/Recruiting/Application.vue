@@ -15,6 +15,9 @@
   <div>
     <Table />
   </div>
+  <template v-if="store.players['hydra:totalItems'] > 0">
+    <Paginator />
+  </template>
 </template>
 
 <script setup>
@@ -22,6 +25,7 @@ import {onBeforeMount, ref} from "vue";
 import { recruitingStore } from "./store";
 import Filter from "./components/filters.vue";
 import Table from "./components/table.vue";
+import Paginator from "./components/Paginator.vue";
 
   const store = recruitingStore()
 

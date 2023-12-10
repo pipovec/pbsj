@@ -6,6 +6,7 @@ export const recruitingStore= defineStore({
 
     state: () => ({
         baseApiUrl: 'https://api2.fpcstat.cz/api',
+        baseUrl: 'https://api2.fpcstat.cz',
         counter: 42,
         players: {},
         filterWnFrom: 1800,
@@ -63,6 +64,21 @@ export const recruitingStore= defineStore({
                 }, {}).then(response => {
                this.players = response.data
             })
-        }
+        },
+        getPlayersByUrl(url) {
+            request(url, null)
+                .then((response) => {
+                    this.players =  response.data
+                })
+        },
     },
+
 })
+
+const apiURL = 'https://api2.fpcstat.cz';
+async function request(url, params = null) {
+    return await  axios.get(apiURL + url, {
+        header: {'accept': 'application/ld+json'},
+        params: params
+    })
+}

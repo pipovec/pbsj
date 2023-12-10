@@ -6118,6 +6118,11 @@ wildcard@^2.0.0:
   resolved "https://registry.yarnpkg.com/wildcard/-/wildcard-2.0.1.tgz#5ab10d02487198954836b6349f74fff961e10f67"
   integrity sha512-CC1bOL87PIWSBhDcTrdeLo6eGT7mCFtrg0uIJtqJUFyK+eJnzl8A1niH56uu7KMa5XFrtiV+AQuHO3n7DsHnLQ==
 
+wn8-color@^1.0.0:
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/wn8-color/-/wn8-color-1.0.0.tgz#28803f17c908a855dff43291e48932acf8255320"
+  integrity sha512-RRi9y4BT00UKvJvmlLGW2OEKvbhXyGUWQtEvPrtbDYvXg9ASufhEZJC4oN4XQgFem+MH8n1hwTLXbbTNSlIh6Q==
+
 wrappy@1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/wrappy/-/wrappy-1.0.2.tgz#b5243d8f3ec1aa35f1364605bc0d1036e30ab69f"

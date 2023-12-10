@@ -12,11 +12,11 @@
         <label for="wnFrom">
           wn8 from:
         </label>
-        <input type="number" name="wnFrom" v-model="store.filterWnFrom" v-on:input="reloadPlayers()">
+        <input type="number" name="wnFrom" v-model="store.filterWnFrom" @change="reloadPlayers()">
         <label for="wnTo">
           to:
         </label>
-        <input type="number" name="wnTo" v-model="store.filterWnTo" v-on:input="reloadPlayers()">
+        <input type="number" name="wnTo" v-model="store.filterWnTo" @change="reloadPlayers()">
       </div>
       <div class="filters-container__input">
         <label for="nickname">
