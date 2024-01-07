@@ -20,7 +20,7 @@ class DeparturesController extends AbstractController
     public function index(): Response
     {
         $players = $this->cache->get('abgänge-von-spielern', function(CacheItemInterface $item) {
-            $item->expiresAfter(60);
+            $item->expiresAfter(120);
             return $this->getPlayers();
         });
 

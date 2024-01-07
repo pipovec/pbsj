@@ -14,16 +14,12 @@
   <div class="w-full md:px-4 px-1">
     <Table />
   </div>
-  <div v-if="store.players['hydra:totalItems'] > 0">
-    <Paginator />
-  </div>
 </template>
 
 <script setup>
   import {departuresStore} from "./store";
   import {onBeforeMount, ref} from "vue";
   import Table from "./components/TableComponent.vue";
-  import Paginator from "./components/Paginator.vue";
 
   const store = departuresStore();
 
