@@ -6,7 +6,13 @@ if (!Encore.isRuntimeEnvironmentConfigured()) {
     Encore.configureRuntimeEnvironment(process.env.NODE_ENV || 'dev');
 }
 
+const isProduction = Encore.isProduction();
+
 Encore
+    .configureDefinePlugin(options => {
+        options.__VUE_PROD_DEVTOOLS__ = JSON.stringify(isProduction)
+    })
+
     .setOutputPath('public/build/')
     .setPublicPath('/build')
     // only needed for CDN's or subdirectory deploy
