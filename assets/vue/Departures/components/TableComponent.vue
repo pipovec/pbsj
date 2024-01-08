@@ -1,5 +1,5 @@
 <template>
-  <div v-if="openPlayerDetailModal" class="absolute lg:top-1/4 lg:left-1/3 lg:w-1/3">
+  <div v-if="openPlayerDetailModal" class="fixed lg:top-1/4 lg:left-1/3 lg:w-1/3">
     <player-detail-modal :playerDetail="playerDetail"/>
   </div>
   <div class="w-full">
