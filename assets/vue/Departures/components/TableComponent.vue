@@ -49,7 +49,7 @@ function winrate(battles, wins) {
 
 function openPlayerDetail(player) {
 
-  if (!openPlayerDetailModal.value) {
+  if (!this.openPlayerDetailModal) {
     sendClick(player)
   }
 
