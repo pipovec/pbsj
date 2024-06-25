@@ -45,6 +45,9 @@
          </div>
        </div>
      </div>
+     <div>
+       <PlayerLinks :player="playerDetail" />
+     </div>
    </div>
   </div>
 </template>
@@ -53,6 +56,7 @@
 import {onMounted, ref} from "vue";
 import axios from "axios";
 import { departuresStore } from "../store";
+import PlayerLinks from "./playerLinks.vue";
 
 const store = departuresStore()
 
@@ -150,7 +154,6 @@ onMounted(async () => {
         })
         .then(data => {
           if (data.status === 'ok') {
-              console.log(Object.values(data.data)[0])
              lastBattleTime.value = getDataFromTimeStamp(Object.values(data.data)[0].last_battle_time);
           }
     })

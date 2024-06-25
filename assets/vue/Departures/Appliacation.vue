@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-gray-600 static grid grid-cols-2 text-white py-3 px-2">
+  <div class="fixed bg-gray-600 grid grid-cols-2 text-white py-3 px-2 w-full" style="top: 2.5rem">
     <div class="grid">
       <h2 class="text-2xl font-black">{{title}}</h2>
     </div>
@@ -11,7 +11,7 @@
       </div>
     </div>
   </div>
-  <div class="w-full md:px-4 px-1">
+  <div class="w-full md:px-4 px-1 mt-20">
     <Table />
   </div>
 </template>

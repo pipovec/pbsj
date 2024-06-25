@@ -48,8 +48,45 @@ function winrate(battles, wins) {
 }
 
 function openPlayerDetail(player) {
+
+  if (!openPlayerDetailModal.value) {
+    sendClick(player)
+  }
+
   this.openPlayerDetailModal = !this.openPlayerDetailModal;
   this.playerDetail = player;
+}
+
+async function sendClick(player) {
+  const body = {
+    "accountId": player.account_id,
+    "domain": "pbsj",
+    "site": "departures",
+    "date": getTodayDate(),
+    "data": {
+      nickname: player.nickname
+    }
+  }
+
+
+  await fetch('https://api3.fpcstat.cz/api/site-click', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(body)
+  })
+}
+
+function getTodayDate() {
+  const date = new Date();
+  const month = date.getMonth() + 1;
+  const day = date.getDate();
+
+  const formattedMonth = month.toString().padStart(2, '0');
+  const formattedDay = day.toString().padStart(2, '0');
+
+  return date.getFullYear() + '-' + formattedMonth + '-' + formattedDay;
 }
 
 function wn8color(wn8) {
