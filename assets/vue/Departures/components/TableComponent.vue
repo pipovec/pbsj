@@ -49,12 +49,11 @@ function winrate(battles, wins) {
 
 function openPlayerDetail(player) {
 
-  if (!this.openPlayerDetailModal) {
+  if (!openPlayerDetailModal.value) {
     sendClick(player)
   }
-
-  this.openPlayerDetailModal = !this.openPlayerDetailModal;
-  this.playerDetail = player;
+  openPlayerDetailModal.value = !openPlayerDetailModal.value;
+  playerDetail.value = player;
 }
 
 async function sendClick(player) {
