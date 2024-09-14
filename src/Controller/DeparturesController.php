@@ -1,33 +1,47 @@
-<?php
+<?php declare(strict_types=1);
 
 namespace App\Controller;
 
-use Psr\Cache\CacheItemInterface;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Psr\Cache\InvalidArgumentException;
+use Psr\Log\LoggerInterface;
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Contracts\Cache\ItemInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
-use Symfony\Contracts\Cache\CacheInterface;
+use Symfony\Contracts\Cache\TagAwareCacheInterface;
 use Symfony\Contracts\HttpClient\HttpClientInterface;
+use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-class DeparturesController extends AbstractController
+final class DeparturesController extends AbstractController
 {
     public function __construct(
         private readonly HttpClientInterface $httpClient,
-        private readonly CacheInterface $cache
+        private readonly TagAwareCacheInterface $cache,
+        private readonly LoggerInterface $logger,
     ){}
 
     #[Route('/abgänge-von-spielern', name: 'app_departures')]
-    public function index(): Response
+    public function index(Request $request): Response
     {
-        $players = $this->cache->get('abgänge-von-spielern', function(CacheItemInterface $item) {
-            $item->expiresAfter(120);
-            return $this->getPlayers();
+        if ($request->query->has('clear_cache')) {
+            try {
+                $this->cache->invalidateTags(['app_departures']);
+            } catch (InvalidArgumentException $e) {
+                $this->logger->warning('Unable to delete departures cache', ['exception' => $e]);
+            }
+        }
+
+        $response = $this->cache->get('abgänge-von-spielern', function(ItemInterface $item) {
+            $item->tag('app_departures');
+            $item->expiresAfter(600);
+
+            return $this->render('departures/index.html.twig', [
+                'players' => $this->getPlayers()
+            ]);
         });
 
 
-        return $this->render('departures/index.html.twig', [
-            'players' => $players
-        ]);
+        return $response;
     }
 
 
