@@ -13,7 +13,18 @@
         >
           <div class="grid grid-cols-[70px,1fr] font-bold text-white">
             <div class="grid max-w-fit">
-              <img :src="player.emblems_large" :alt="player.name" :title="player.name" width="68" height="68" class="rounded-full">
+              <picture>
+                <source :srcset="replaceFpcCdn(player.emblems_large)" type="image/webp">
+                <source :srcset="player.emblems_large" type="image/png">
+              <img
+                  :src="replaceFpcCdn(player.emblems_large)"
+                  loading="lazy"
+                  :alt="player.name"
+                  :title="player.name"
+                  width="68" height="68" class="rounded-full"
+                  sizes="(max-width: 1080) 68px, 68px"
+              >
+              </picture>
               <div class="text-white text-center font-bold">{{ player.abbreviation }}</div>
             </div>
             <div class="grid text-lg text-center content-center">{{player.nickname}}</div>
@@ -38,9 +49,15 @@ const store = departuresStore();
 
 let openPlayerDetailModal = ref(false)
 let playerDetail = ref({})
+const cdnUrl = ref('https://cdn.fpcstat.cz')
 
 function backgroundColor(wn8) {
   return'background-color: ' + wn8color(wn8)
+}
+
+function replaceFpcCdn(original) {
+  const updatedUrl = original.replace('https://eu.wargaming.net/clans/media/clans/emblems', cdnUrl.value);
+  return updatedUrl.replace('.png', '.webp')
 }
 
 function winrate(battles, wins) {

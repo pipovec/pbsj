@@ -27,10 +27,13 @@
       color: white
 
   .nav-items
-    display: inline-flex
+    display: none
     justify-content: flex-end
     align-items: center
     width: inherit
+
+    @media (min-width: $notepad)
+      display: inline-flex
 
     .nav-item
       margin: $margin-left-right
