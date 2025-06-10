@@ -8,7 +8,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="player in store.players['hydra:member']">
+      <tr v-for="player in store.players['member']">
         <td>{{ player.nickname }}</td>
         <td></td>
         <td></td>

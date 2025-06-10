@@ -7,7 +7,7 @@
       <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 mt-4 mx-auto overflow-y-auto">
         <div
             class="px-2 py-1 grid grid-flow-row mr-2 mb-2 rounded"
-            v-for="(player, index) in store.players['hydra:member']" :key="index"
+            v-for="(player, index) in store.players['member']" :key="index"
             :style="backgroundColor(player.wn8)"
             @click="openPlayerDetail(player)"
         >

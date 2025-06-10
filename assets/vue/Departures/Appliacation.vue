@@ -7,7 +7,7 @@
       <div class="flex flex-wrap content-center">
         Total players:
         <span class="font-black flex ml-1"
-        >{{ store.players['hydra:totalItems']}}</span>
+        >{{ store.players['totalItems']}}</span>
       </div>
     </div>
   </div>
