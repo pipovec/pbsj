@@ -8,6 +8,7 @@ export const departuresStore= defineStore({
         baseUrl: 'https://api2.fpcstat.cz',
         baseApiUrl: 'https://api2.fpcstat.cz/api',
         players: {},
+        numberOfGermanClanCount: 0,
     }),
 
     actions: {
@@ -17,6 +18,22 @@ export const departuresStore= defineStore({
                      this.players =  response.data
                 })
         },
+        async getClansCount() {
+            const response = await fetch(this.baseApiUrl + '/clans/de/count', {
+                method: 'GET',
+                headers: {
+                    'Accept': 'application/json'
+                }
+            });
+
+            if (!response.ok) {
+                throw new Error(`HTTP error! Status: ${response.status}`);
+            }
+
+            const data = await response.json();
+
+            this.numberOfGermanClanCount = data.clans_count;
+        }
     },
 })
 const apiURL = 'https://api2.fpcstat.cz';

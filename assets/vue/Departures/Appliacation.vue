@@ -5,6 +5,7 @@
     </div>
     <div class="flex flex-row content-end justify-end gap-4">
       <div class="flex flex-wrap content-center">
+        Anzahl deutscher clans: <span class="font-black flex ml-1 mr-2">{{ store.numberOfGermanClanCount }}</span>
         Total players:
         <span class="font-black flex ml-1"
         >{{ store.players['totalItems']}}</span>
@@ -18,7 +19,7 @@
 
 <script setup>
   import {departuresStore} from "./store";
-  import {onBeforeMount, ref} from "vue";
+  import {onBeforeMount, onMounted, ref} from "vue";
   import Table from "./components/TableComponent.vue";
 
   const store = departuresStore();
@@ -30,5 +31,9 @@
   onBeforeMount(() => {
     store.players = props.players
   });
+
+  onMounted(() => {
+    store.getClansCount()
+  })
 
 </script>
