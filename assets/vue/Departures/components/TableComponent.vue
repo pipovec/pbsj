@@ -10,6 +10,7 @@
             v-for="(player, index) in store.players['member']" :key="index"
             :style="backgroundColor(player.wn8)"
             @click="openPlayerDetail(player)"
+            data-umami-event="Click on player"
         >
           <div class="grid grid-cols-[70px,1fr] font-bold text-white">
             <div class="grid max-w-fit">
