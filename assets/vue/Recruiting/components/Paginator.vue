@@ -79,8 +79,12 @@ const currentPageNumber = computed(() => {
 });
 
 const totalPages = computed(() => {
-  if (!store.players.totalItems || !store.itemsPerPage) return 1;
-  return Math.ceil(store.players.totalItems / store.itemsPerPage);
+  if (!store.players.totalItems) return 1;
+
+  // Use actual items per page from API response (member array length)
+  const actualItemsPerPage = store.players.member?.length || 30;
+
+  return Math.ceil(store.players.totalItems / actualItemsPerPage);
 });
 
 const visiblePages = computed(() => {

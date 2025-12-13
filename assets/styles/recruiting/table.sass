@@ -24,24 +24,30 @@ table.recruiting-table
       width: 100%
 
     th
-      padding: 0.875rem 0.75rem
+      padding: 0.5rem 0.4rem
       text-align: center
-      font-size: 0.75rem
+      font-size: 0.65rem
       font-weight: 600
       color: white
       text-transform: uppercase
-      letter-spacing: 0.05em
+      letter-spacing: 0.03em
       border-bottom: 2px solid rgba(255, 255, 255, 0.2)
-      white-space: nowrap
-      flex: 1
+      white-space: normal
+      word-wrap: break-word
+      flex: 1 1 0
+      min-width: 0
+      line-height: 1.2
 
       &:first-child
         border-top-left-radius: 0
         padding-left: 1rem
+        text-align: left
+        flex: 1.5 1 0
 
       &:last-child
         border-top-right-radius: 0
         padding-right: 1rem
+        flex: 1.8 1 0
 
   tbody
     display: block
@@ -73,15 +79,18 @@ table.recruiting-table
       color: variables.$text-color-grey
       border-bottom: 1px solid #e5e7eb
       font-size: 0.875rem
-      flex: 1
+      flex: 1 1 0
+      min-width: 0
 
       &:first-child
         padding-left: 1rem
         text-align: left
         font-weight: 600
+        flex: 1.5 1 0
 
       &:last-child
         padding-right: 1rem
+        flex: 1.8 1 0
 
 .tank
   margin: 0 auto
