@@ -37,3 +37,16 @@ import Paginator from "./components/Paginator.vue";
     store.getPlayers()
   })
 </script>
+
+<style>
+:root {
+  --primary-gray: #64748b;
+  --primary-hover: #475569;
+  --secondary-gray: #94a3b8;
+  --dark-bg: #1e293b;
+  --card-bg: #2d3748;
+  --text-primary: #f8fafc;
+  --text-secondary: #cbd5e1;
+  --accent-gray: #94a3b8;
+}
+</style>

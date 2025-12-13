@@ -1,12 +1,9 @@
 <template>
-  <div v-if="openPlayerDetailModal" class="fixed lg:top-1/4 lg:left-1/3 lg:w-1/3">
-    <player-detail-modal :playerDetail="playerDetail"/>
-  </div>
   <div class="w-full">
     <div class="table-component">
       <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-2">
         <div
-            class="px-2 py-1 grid grid-flow-row rounded"
+            class="px-2 py-1 grid grid-flow-row rounded cursor-pointer transition-transform hover:scale-105"
             v-for="(player, index) in store.players['member']" :key="index"
             :style="backgroundColor(player.wn8)"
             @click="openPlayerDetail(player)"
@@ -39,17 +36,25 @@
         </div>
       </div>
     </div>
+
+    <user-detail-modal
+        v-if="showModal"
+        @close-user-detail="showModal = false"
+        :user="selectedUser"
+    />
   </div>
 </template>
 
 <script setup>
 import { departuresStore } from "../store";
-import {ref} from "vue";
-import PlayerDetailModal from "./playerDetailModal.vue";
+import {ref, defineAsyncComponent} from "vue";
+
+const userDetailModal = defineAsyncComponent(() => import('../../Recruiting/components/userDetailModal.vue'))
+
 const store = departuresStore();
 
-let openPlayerDetailModal = ref(false)
-let playerDetail = ref({})
+let showModal = ref(false)
+let selectedUser = ref({name: '', account_id: null})
 const cdnUrl = ref('https://cdn.fpcstat.cz')
 
 function backgroundColor(wn8) {
@@ -66,12 +71,14 @@ function winrate(battles, wins) {
 }
 
 function openPlayerDetail(player) {
-
-  if (!openPlayerDetailModal.value) {
+  if (!showModal.value) {
     sendClick(player)
   }
-  openPlayerDetailModal.value = !openPlayerDetailModal.value;
-  playerDetail.value = player;
+  selectedUser.value = {
+    name: player.nickname,
+    account_id: player.account_id
+  }
+  showModal.value = true
 }
 
 async function sendClick(player) {
