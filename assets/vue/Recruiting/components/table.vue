@@ -10,17 +10,17 @@
     <tbody>
       <tr v-for="player in store.players['member']">
         <td>{{ player.nickname }}</td>
-        <td></td>
-        <td></td>
+        <td>{{ player.battles_all || '-' }}</td>
+        <td>{{ player.winrate ? parseFloat(player.winrate).toFixed(2) + '%' : '-' }}</td>
         <td>{{ roundWN(player.wn8) }}</td>
         <td>{{ player.global_rating }}</td>
-        <td></td>
+        <td>{{ player.avg_xp || '-' }}</td>
         <td>{{ player.tier_10 }}</td>
         <td>{{ player.tier_8 }}</td>
         <td>{{ player.tier_6 }}</td>
-        <td></td>
-        <td></td>
-        <td></td>
+        <td>{{ player.battles_7_days || '-' }}</td>
+        <td>{{ player.battles_14_days || '-' }}</td>
+        <td>{{ player.battles_30_days || '-' }}</td>
         <td v-html="isTrue(player.combat_officer)"></td>
         <td v-html="isTrue(player.personnel_officer)"></td>
         <td v-html="isTrue(player.tank_1)"></td>

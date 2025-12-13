@@ -4,9 +4,9 @@
   </div>
   <div class="w-full">
     <div class="table-component">
-      <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 mt-4 mx-auto overflow-y-auto">
+      <div class="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 2xl:grid-cols-6 gap-2">
         <div
-            class="px-2 py-1 grid grid-flow-row mr-2 mb-2 rounded"
+            class="px-2 py-1 grid grid-flow-row rounded"
             v-for="(player, index) in store.players['member']" :key="index"
             :style="backgroundColor(player.wn8)"
             @click="openPlayerDetail(player)"
@@ -139,7 +139,8 @@ function wn8color(wn8) {
 
 <style>
 .table-component {
-  display: grid;
-  grid-template-columns: 1fr auto;
+  width: 100%;
+  max-width: 100vw;
+  overflow-x: hidden;
 }
 </style>

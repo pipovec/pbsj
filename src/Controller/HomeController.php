@@ -35,9 +35,7 @@ final class HomeController extends AbstractController
             $item->tag('homepage');
             $item->expiresAfter(600);
 
-            return $this->render('home/index.html.twig', [
-                'controller_name' => 'HomeController',
-            ]);
+            return $this->render('home/index.html.twig');
         });
     }
 }

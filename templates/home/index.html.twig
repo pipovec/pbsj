@@ -1,30 +1,43 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}PBJS | STAT{% endblock %}
+{% block title %}PBSJ | STAT - World of Tanks Statistiken{% endblock %}
 
- {% block stylesheets %}
-     {{ parent() }}
-     {{ encore_entry_link_tags('recruiting') }}
- {% endblock %}
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('home') }}
+{% endblock %}
 
 {% block body %}
-<div class="homepage-container">
-    <div class="homepage-container__title">
-        <h1>PBSJ Stat</h1>
-    </div>
-    <div class="homepage-container__links-wrapper">
-        <div class="homepage-container__links">
-            <div>
-                <div class="hover-effect">
-                    <a class="homepage-container__link" href="{{ path('app_recruiting') }}" data-umami-event="click-rekrutierung">Rekrutierung</a>
-                </div>
-            </div>
-            <div>
-                <div class="hover-effect">
-                <a class="homepage-container__link" href="{{ path('app_departures') }}" data-umami-event="click-spielerabgange">Spielerabgänge</a>
-                </div>
-            </div>
-        </div>
+<div class="homepage-wrapper">
+    <div class="homepage-container">
+        <header class="homepage-header">
+            <h1 class="homepage-title">PBSJ Stat</h1>
+            <p class="homepage-subtitle">Statistiken und Analysen für World of Tanks</p>
+        </header>
+
+        <nav class="homepage-nav" aria-label="Hauptnavigation">
+            <a href="{{ path('app_departures') }}" class="homepage-card">
+                <div class="homepage-card__icon">👋</div>
+                <h2 class="homepage-card__title">Spielerabgänge</h2>
+                <p class="homepage-card__description">
+                    Statistiken zu Spielern, die Clans verlassen haben
+                </p>
+            </a>
+
+            <a href="{{ path('app_recruiting') }}" class="homepage-card">
+                <div class="homepage-card__icon">📊</div>
+                <h2 class="homepage-card__title">Rekrutierung</h2>
+                <p class="homepage-card__description">
+                    Übersicht über Clan-Rekrutierungen und neue Spieler
+                </p>
+            </a>
+        </nav>
+
+        <footer class="homepage-footer">
+            <p class="homepage-footer__text">
+                World of Tanks Community Statistiken
+            </p>
+        </footer>
     </div>
 </div>
 {% endblock %}

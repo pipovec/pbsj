@@ -1,60 +1,235 @@
 @use '../variables'
 
-svg.filter-icon
+// Filter button
+.filter-button
+  display: flex
+  align-items: center
+  gap: 0.5rem
+  background: rgba(255, 255, 255, 0.1)
+  border: 1px solid rgba(255, 255, 255, 0.3)
+  border-radius: 0.5rem
+  padding: 0.5rem 1rem
   color: white
-  width: 2rem
-  vertical-align: middle
-  fill: currentColor
+  cursor: pointer
+  transition: all 0.3s ease
+  font-size: 0.9rem
+
+  &:hover
+    background: rgba(255, 255, 255, 0.2)
+    border-color: rgba(255, 255, 255, 0.5)
+
+  &.active
+    background: rgba(255, 255, 255, 0.25)
+
+  svg.filter-icon
+    width: 1.25rem
+    height: 1.25rem
+    fill: currentColor
+
+  .filter-text
+    font-weight: 500
+
+// Filter panel
+.filters-panel
+  position: fixed
+  top: 10rem
+  left: 1rem
+  width: 400px
+  max-width: calc(100vw - 2rem)
+  background: white
+  border-radius: 0.75rem
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2)
+  z-index: 100
   overflow: hidden
 
-.filters-container
-  display: flex
-  flex-direction: column
-  flex-wrap: wrap
-  gap: 1rem
-  padding: 1rem
-  border-radius: 0  0  0 0.4rem
-  width: 25%
-  background: lightgray
-  position: absolute
-  top: 6rem
-  right: 0
-  z-index: 1
-  font-size: 0.8rem
+  @media (max-width: variables.$notepad)
+    top: 9.5rem
+    width: 350px
 
-  input
-    background-color: lightgray
-    color: black
-    font-weight: bold
-    border: 1px black solid
-    border-radius: 0.15rem
-    text-align: center
+  @media (max-width: variables.$mobile-h)
+    width: calc(100vw - 2rem)
 
-  label
-    color: #555555
-    font-style: italic
-    margin-right: 1rem
-    align-self: center
-    line-height: normal
-
-
-  .filters-container__wn
+  .filters-panel__header
     display: flex
-    flex-direction: row
-    flex-wrap: wrap
-
-    input
-      width: 8rem
-
-    input:not(last)
-      margin-right: 1rem
-
-
-  .filters-container__filter-wrapper
-    display: grid
-
-  .filters-container__input
-    display: flex
-    flex-direction: row
+    justify-content: space-between
     align-items: center
+    padding: 1.25rem
+    background: linear-gradient(135deg, variables.$text-color-grey 0%, variables.$text-color-grey-light 100%)
+    color: white
+
+    h3
+      margin: 0
+      font-size: 1.125rem
+      font-weight: 600
+
+    .close-button
+      background: transparent
+      border: none
+      color: white
+      font-size: 1.5rem
+      cursor: pointer
+      padding: 0
+      width: 2rem
+      height: 2rem
+      display: flex
+      align-items: center
+      justify-content: center
+      border-radius: 0.25rem
+      transition: background 0.2s ease
+
+      &:hover
+        background: rgba(255, 255, 255, 0.2)
+
+  .filters-panel__section
+    padding: 1.25rem
+    border-bottom: 1px solid #e5e7eb
+
+    &:last-child
+      border-bottom: none
+
+    .filter-label
+      display: block
+      font-size: 0.875rem
+      font-weight: 600
+      color: variables.$text-color-grey
+      margin-bottom: 0.75rem
+
+    .filter-range
+      display: flex
+      align-items: center
+      gap: 0.75rem
+
+      .filter-input-group
+        flex: 1
+        display: flex
+        flex-direction: column
+        gap: 0.375rem
+
+        .input-label
+          font-size: 0.75rem
+          color: variables.$text-color-grey-light
+          font-weight: 500
+
+        input
+          width: 100%
+          padding: 0.5rem
+          border: 1px solid #d1d5db
+          border-radius: 0.375rem
+          font-size: 0.875rem
+          background: white
+          color: variables.$text-color-grey
+          transition: border-color 0.2s ease
+
+          &::placeholder
+            color: #9ca3af
+
+          &:focus
+            outline: none
+            border-color: variables.$text-color-grey
+            box-shadow: 0 0 0 3px rgba(99, 107, 111, 0.1)
+
+      .range-separator
+        color: variables.$text-color-grey-light
+        font-weight: 500
+        margin-top: 1.125rem
+
+    .filter-text-input
+      width: 100%
+      padding: 0.625rem
+      border: 1px solid #d1d5db
+      border-radius: 0.375rem
+      font-size: 0.875rem
+      background: white
+      color: variables.$text-color-grey
+      transition: border-color 0.2s ease
+
+      &::placeholder
+        color: #9ca3af
+
+      &:focus
+        outline: none
+        border-color: variables.$text-color-grey
+        box-shadow: 0 0 0 3px rgba(99, 107, 111, 0.1)
+
+    .filter-checkboxes
+      display: flex
+      flex-direction: column
+      gap: 0.75rem
+
+      .checkbox-label
+        display: flex
+        align-items: center
+        cursor: pointer
+        padding: 0.5rem
+        border-radius: 0.375rem
+        transition: background 0.2s ease
+
+        &:hover
+          background: #f9fafb
+
+        input[type="checkbox"]
+          width: 1.125rem
+          height: 1.125rem
+          margin: 0
+          margin-right: 0.625rem
+          cursor: pointer
+          accent-color: variables.$text-color-grey
+
+        .checkbox-text
+          font-size: 0.875rem
+          color: #374151
+          font-weight: 500
+
+  .filters-panel__footer
+    padding: 1.25rem
+    background: #f9fafb
+    border-top: 1px solid #e5e7eb
+
+    .reset-button
+      width: 100%
+      display: flex
+      align-items: center
+      justify-content: center
+      gap: 0.5rem
+      padding: 0.75rem
+      background: white
+      border: 1px solid #d1d5db
+      border-radius: 0.5rem
+      color: variables.$text-color-grey
+      font-size: 0.875rem
+      font-weight: 600
+      cursor: pointer
+      transition: all 0.2s ease
+
+      &:hover
+        background: variables.$text-color-grey
+        color: white
+        border-color: variables.$text-color-grey
+
+      .reset-icon
+        font-size: 1.25rem
+        line-height: 1
+
+// Transition animations
+.filters-enter-active
+  animation: slideIn 0.3s ease-out
+
+.filters-leave-active
+  animation: slideOut 0.3s ease-in
+
+@keyframes slideIn
+  from
+    opacity: 0
+    transform: translateY(-10px)
+  to
+    opacity: 1
+    transform: translateY(0)
+
+@keyframes slideOut
+  from
+    opacity: 1
+    transform: translateY(0)
+  to
+    opacity: 0
+    transform: translateY(-10px)
 

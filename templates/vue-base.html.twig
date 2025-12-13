@@ -1,17 +1,20 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="de">
 <head>
-    <meta charset="utf-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="author" content="Boris Fekar">
     <meta name="email" content="info@fpcstat.cz">
     <meta name="description" content="Alle Infos zu Clan-Abgängen in World of Tanks: Unser Portal bietet dir einen umfassenden Überblick über die aktuelle Situation in der deutschen World of Tanks-Community. Finde Statistiken, Spielerprofile und vieles mehr.">
     <meta name="google-site-verification" content="Zj-ImjHS46hTS5AtXCBxovl5UbXSDDBECNrygomGq1Q"/>
-    <script defer src="https://umami.fekar.org/script.js" data-website-id="d89f824d-080c-4a3e-9309-d4105fc34db0"></script>
+    {% block meta %}{% endblock %}
     <title>{% block title %}PBSJ | STAT{% endblock %}</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com/css2?family=Crimson+Pro">
-    <link rel="icon"
-          href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@200;300;400;500&display=swap">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
+    <script defer src="https://umami.fekar.org/script.js" data-website-id="d89f824d-080c-4a3e-9309-d4105fc34db0"></script>
     {% block stylesheets %}
         {{ encore_entry_link_tags('style') }}
         {{ encore_entry_link_tags('menu') }}
@@ -20,21 +23,25 @@
 
     {% block javascripts %}
     {% endblock %}
-
 </head>
 <body>
-<header class="menu-bar">
-    <div class="menu-brand">
-        <a class="brand" href="{{ path('app_home') }}">
-            PBSJ Comnunity
-        </a>
-    </div>
-    <nav class="nav-items">
-        <a class="nav-item" href="{{ path('app_recruiting') }}">Rekrutierung</a>
-        <a class="nav-item" href="{{ path('app_departures') }}">Spielerabgänge</a>
-        <a class="nav-item" target="_blank" href="https://wn8-calculator.fpcstat.cz/">WN8 calculator</a>
-    </nav>
-</header>
-{% block content %}{% endblock %}
+    <header class="menu-bar">
+        <div class="menu-brand">
+            <a class="brand" href="{{ path('app_home') }}" aria-label="PBSJ Community Startseite">
+                PBSJ Community
+            </a>
+        </div>
+        <nav class="nav-items" aria-label="Hauptnavigation">
+            <a class="nav-item" href="{{ path('app_departures') }}">Spielerabgänge</a>
+            <a class="nav-item" href="{{ path('app_recruiting') }}">Rekrutierung</a>
+            <a class="nav-item" href="https://wn8-calculator.fpcstat.cz/" target="_blank" rel="noopener noreferrer">
+                WN8 Calculator
+            </a>
+        </nav>
+        <button class="menu-toggle" aria-label="Menü öffnen" aria-expanded="false">
+            <span class="menu-icon"></span>
+        </button>
+    </header>
+    {% block content %}{% endblock %}
 </body>
 </html>

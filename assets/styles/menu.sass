@@ -1,53 +1,198 @@
-@import "_variables.scss"
+@use 'variables'
 
+// Modern menu bar design
 .menu-bar
-  font-family: $font-family-sans
-  display: inline-flex
+  font-family: variables.$font-family-sans
+  display: flex
   position: fixed
-  align-items: stretch
-  color: $text-color-white
+  align-items: center
+  justify-content: space-between
   width: 100%
-  height: 2.5rem
+  height: 4rem
   top: 0
   left: 0
-  z-index: 1
-  background: $background-color-linear-gradient-grey
+  z-index: 1000
+  background: white
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1)
+  padding: 0 2rem
   box-sizing: border-box
+  transition: box-shadow 0.3s ease
+
+  @media (max-width: variables.$notepad)
+    padding: 0 1rem
+    height: 3.5rem
+
+  &.scrolled
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15)
 
   .menu-brand
     display: flex
-    justify-content: center
     align-items: center
-    background: $background-color-linear-gradient-green
-    width: 10rem
+    flex-shrink: 0
 
     .brand
       text-decoration: none
-      font-weight: 700
-      color: white
+      font-weight: 500
+      font-size: 1.5rem
+      color: variables.$text-color-grey
+      transition: color 0.3s ease
+      letter-spacing: -0.02em
+
+      &:hover
+        color: variables.$text-color-grey-light
+
+      @media (max-width: variables.$mobile-h)
+        font-size: 1.25rem
 
   .nav-items
-    display: none
-    justify-content: flex-end
+    display: flex
+    gap: 2rem
     align-items: center
-    width: inherit
 
-    @media (min-width: $notepad)
-      display: inline-flex
+    @media (max-width: variables.$notepad)
+      gap: 1rem
+
+    @media (max-width: variables.$mobile-h)
+      display: none
 
     .nav-item
-      margin: $margin-left-right
-
-
-    a.nav-item
-      color: $text-color-white
+      position: relative
+      color: variables.$text-color-grey
       text-decoration: none
+      font-size: 1rem
+      font-weight: 400
+      transition: color 0.3s ease
+      padding: 0.5rem 0
 
+      &::after
+        content: ''
+        position: absolute
+        bottom: 0
+        left: 0
+        width: 0
+        height: 2px
+        background: variables.$text-color-grey
+        transition: width 0.3s ease
 
-    a.nav-item:hover, a.nav-item:active
-      color: $text-color-white
-      text-decoration: underline
-      text-underline-offset: 4px
-      text-decoration-thickness: 0.1rem
+      &:hover
+        color: variables.$text-color-grey
+
+        &::after
+          width: 100%
+
+      &.active
+        color: variables.$text-color-grey
+        font-weight: 500
+
+        &::after
+          width: 100%
+
+// Mobile menu toggle button
+.menu-toggle
+  display: none
+  background: none
+  border: none
+  cursor: pointer
+  padding: 0.5rem
+  color: variables.$text-color-grey
+
+  @media (max-width: variables.$mobile-h)
+    display: block
+
+  .menu-icon
+    width: 24px
+    height: 2px
+    background: variables.$text-color-grey
+    display: block
+    position: relative
+    transition: background 0.3s ease
+
+    &::before,
+    &::after
+      content: ''
+      width: 24px
+      height: 2px
+      background: variables.$text-color-grey
+      position: absolute
+      left: 0
+      transition: transform 0.3s ease
+
+    &::before
+      top: -8px
+
+    &::after
+      top: 8px
+
+// Main content spacing for fixed menu
+body
+  padding-top: 4rem
+
+  @media (max-width: variables.$notepad)
+    padding-top: 3.5rem
+
+main
+  margin-top: 2rem
+
+// Noscript warning styling
+.noscript-warning
+  background: #fff3cd
+  border: 1px solid #ffc107
+  border-radius: 0.5rem
+  padding: 1.5rem
+  margin: 2rem auto
+  max-width: 600px
+  text-align: center
+
+  strong
+    color: #856404
+    font-size: 1.1rem
+
+// Departures page specific styling
+.departures-header
+  top: 4rem
+
+  @media (max-width: variables.$notepad)
+    top: 3.5rem
+
+.departures-content
+  margin-top: 5.5rem
+
+  @media (max-width: variables.$notepad)
+    margin-top: 5rem
+
+// Recruiting page specific styling
+.recruiting-header-fixed
+  position: fixed
+  top: 4rem
+  left: 0
+  right: 0
+  z-index: 20
+  margin: 0
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1)
+  height: auto
+  min-height: 5.75rem
+  max-height: 6.5rem
+  overflow: visible
+
+  @media (max-width: variables.$notepad)
+    top: 3.5rem
+    min-height: 5.75rem
+    max-height: 6.5rem
+
+.recruiting-content
+  margin-top: 10.25rem
+  overflow-x: auto
+  width: 100%
+  padding: 0
+  margin-bottom: 0
+  padding-bottom: 6rem
+
+  @media (max-width: variables.$notepad)
+    margin-top: 9.75rem
+
+  table
+    width: 100%
+    border-collapse: collapse
+    margin: 0
 
 

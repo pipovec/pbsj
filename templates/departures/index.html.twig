@@ -1,6 +1,10 @@
 {% extends 'vue-base.html.twig' %}
 
-{% block title %}Abgänge von Spielern | PBSJ{% endblock %}
+{% block title %}Spielerabgänge - PBSJ Community{% endblock %}
+
+{% block meta %}
+    <meta name="description" content="Statistiken zu Spielerabgängen in World of Tanks - PBSJ Community Analysen">
+{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -14,13 +18,12 @@
 {% block content %}
     <main>
         <noscript>
-            <strong>
-                We're sorry but recruiting  doesn't work properly without JavaScript enabled. Please enable it to continue.
-            </strong>
+            <div class="noscript-warning">
+                <strong>
+                    JavaScript ist erforderlich. Bitte aktivieren Sie JavaScript, um fortzufahren.
+                </strong>
+            </div>
         </noscript>
         <div id="departures" data-players="{{ players }}"></div>
     </main>
-    <script>
-      umami.track();
-   </script>
 {% endblock %}

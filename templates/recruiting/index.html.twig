@@ -1,6 +1,10 @@
 {% extends 'vue-base.html.twig' %}
 
-{% block title %}Recruiting | PBSJ{% endblock %}
+{% block title %}Rekrutierung - PBSJ Community{% endblock %}
+
+{% block meta %}
+    <meta name="description" content="Übersicht über Clan-Rekrutierungen in World of Tanks - PBSJ Community Statistiken">
+{% endblock %}
 
 {% block stylesheets %}
     {{ parent() }}
@@ -13,11 +17,13 @@
 
 {% block content %}
     <main>
-    <noscript>
-        <strong>
-            We're sorry but recruiting  doesn't work properly without JavaScript enabled. Please enable it to continue.
-        </strong>
-    </noscript>
-    <div id="recruiting"></div>
+        <noscript>
+            <div class="noscript-warning">
+                <strong>
+                    JavaScript ist erforderlich. Bitte aktivieren Sie JavaScript, um fortzufahren.
+                </strong>
+            </div>
+        </noscript>
+        <div id="recruiting"></div>
     </main>
 {% endblock %}

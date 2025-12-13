@@ -1,18 +1,18 @@
 <template>
-  <div class="fixed bg-gray-600 grid grid-cols-2 text-white py-3 px-2 w-full" style="top: 2.5rem">
-    <div class="grid">
+  <div class="departures-header fixed bg-gray-600 text-white py-3 px-4 w-full z-10">
+    <div class="flex flex-col gap-3">
       <h2 class="text-2xl font-black">{{title}}</h2>
-    </div>
-    <div class="flex flex-row content-end justify-end gap-4">
-      <div class="flex flex-wrap content-center">
-        Anzahl deutscher clans: <span class="font-black flex ml-1 mr-2">{{ store.numberOfGermanClanCount }}</span>
-        Total players:
-        <span class="font-black flex ml-1"
-        >{{ store.players['totalItems']}}</span>
+      <div class="flex flex-row flex-wrap gap-6 text-sm md:text-base">
+        <div class="flex items-center">
+          Anzahl deutscher clans: <span class="font-black ml-1">{{ store.numberOfGermanClanCount }}</span>
+        </div>
+        <div class="flex items-center">
+          Total players: <span class="font-black ml-1">{{ store.players['totalItems']}}</span>
+        </div>
       </div>
     </div>
   </div>
-  <div class="w-full md:px-4 px-1 mt-20">
+  <div class="departures-content w-full">
     <Table />
   </div>
 </template>

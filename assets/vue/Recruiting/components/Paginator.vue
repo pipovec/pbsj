@@ -1,47 +1,67 @@
 <template>
-  <div class="bg-gray-600 static grid text-white py-3 px-2 w-full">
-    <div class="lg:w-1/2 w-full lg:mx-auto grid grid-cols-5 justify-center">
-      <div class="grid">
+  <div class="pagination-container">
+    <div class="pagination-wrapper">
+      <div class="pagination-info">
+        <span class="pagination-text">
+          Seite {{ currentPageNumber }} von {{ totalPages }}
+        </span>
+        <span class="pagination-total">
+          ({{ store.players.totalItems || 0 }} Spieler gesamt)
+        </span>
+      </div>
+
+      <div class="pagination-controls">
         <button
-            v-if="store.players['hydra:view']['hydra:first']"
-            @click="store.getPlayersByUrl(store.players['hydra:view']['hydra:first'])"
+            @click="goToPage(1)"
             type="button"
-            :class="buttonClass"
+            class="pagination-button"
+            :disabled="currentPageNumber === 1"
         >
-          First
+          <span class="button-icon">⟪</span>
+          <span class="button-text">Erste</span>
         </button>
-      </div>
-      <div class="grid">
+
         <button
-            v-if="store.players['hydra:view']['hydra:previous']"
-            @click="store.getPlayersByUrl(store.players['hydra:view']['hydra:previous'])"
+            @click="goToPage(currentPageNumber - 1)"
             type="button"
-            :class="buttonClass"
+            class="pagination-button"
+            :disabled="currentPageNumber === 1"
         >
-            Previous
+          <span class="button-icon">‹</span>
+          <span class="button-text">Zurück</span>
         </button>
-      </div>
-      <div class="px-4 py-2 mr-4 font-bold">
-          page: {{getPage(store.players['hydra:view']['@id'])}} / {{getPage(store.players['hydra:view']['hydra:last'])}}
-      </div>
-      <div class="grid">
+
+        <div class="pagination-pages">
+          <button
+              v-for="page in visiblePages"
+              :key="page"
+              @click="goToPage(page)"
+              type="button"
+              class="pagination-page-button"
+              :class="{ 'active': page === currentPageNumber }"
+          >
+            {{ page }}
+          </button>
+        </div>
+
         <button
-            v-if="store.players['hydra:view']['hydra:next']"
             type="button"
-            @click="store.getPlayersByUrl(store.players['hydra:view']['hydra:next'])"
-            :class="buttonClass"
+            @click="goToPage(currentPageNumber + 1)"
+            class="pagination-button"
+            :disabled="currentPageNumber === totalPages"
         >
-          Next
+          <span class="button-text">Weiter</span>
+          <span class="button-icon">›</span>
         </button>
-      </div>
-      <div class="grid">
+
         <button
             type="button"
-            v-if="store.players['hydra:view']['hydra:last']"
-            @click="store.getPlayersByUrl(store.players['hydra:view']['hydra:last'])"
-            :class="buttonClass"
+            @click="goToPage(totalPages)"
+            class="pagination-button"
+            :disabled="currentPageNumber === totalPages"
         >
-          Last
+          <span class="button-text">Letzte</span>
+          <span class="button-icon">⟫</span>
         </button>
       </div>
     </div>
@@ -50,13 +70,43 @@
 
 <script setup>
 import { recruitingStore } from "../store";
+import { computed } from "vue";
+
 const store = recruitingStore();
 
-const buttonClass = 'rounded-md border border-white border-solid mx-2';
+const currentPageNumber = computed(() => {
+  return store.currentPage || 1;
+});
 
-function getPage(path) {
-  const params = new URL(store.baseUrl+path)
-  return params.searchParams.get('page');
+const totalPages = computed(() => {
+  if (!store.players.totalItems || !store.itemsPerPage) return 1;
+  return Math.ceil(store.players.totalItems / store.itemsPerPage);
+});
+
+const visiblePages = computed(() => {
+  const current = currentPageNumber.value;
+  const total = totalPages.value;
+  const pages = [];
+
+  let start = Math.max(1, current - 2);
+  let end = Math.min(total, current + 2);
+
+  if (end - start < 4) {
+    if (start === 1) {
+      end = Math.min(total, start + 4);
+    } else if (end === total) {
+      start = Math.max(1, end - 4);
+    }
+  }
+
+  for (let i = start; i <= end; i++) {
+    pages.push(i);
+  }
+
+  return pages;
+});
+
+function goToPage(page) {
+  store.setPage(page);
 }
-
 </script>

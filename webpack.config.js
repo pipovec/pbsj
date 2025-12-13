@@ -26,6 +26,7 @@ Encore
      */
 
     .addStyleEntry('style', './assets/styles/tailwind.css')
+    .addStyleEntry('home', './assets/styles/home.sass')
     .addStyleEntry('recruiting', './assets/styles/recruiting/recruiting.sass')
     .addStyleEntry('menu', './assets/styles/menu.sass')
 
