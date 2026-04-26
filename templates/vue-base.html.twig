@@ -14,8 +14,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@200;300;400;500&display=swap">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text></svg>">
-    <script defer src="https://umami.fekar.org/script.js" data-website-id="d89f824d-080c-4a3e-9309-d4105fc34db0"></script>
-    {% block stylesheets %}
+{% block stylesheets %}
         {{ encore_entry_link_tags('style') }}
         {{ encore_entry_link_tags('menu') }}
         {{ encore_entry_link_tags('recruiting') }}
@@ -34,6 +33,7 @@
         <nav class="nav-items" aria-label="Hauptnavigation">
             <a class="nav-item" href="{{ path('app_departures') }}">Spielerabgänge</a>
             <a class="nav-item" href="{{ path('app_recruiting') }}">Rekrutierung</a>
+            <a class="nav-item" href="{{ path('app_chat') }}">Pinnwand</a>
             <a class="nav-item" href="https://wn8-calculator.fpcstat.cz/" target="_blank" rel="noopener noreferrer">
                 WN8 Calculator
             </a>

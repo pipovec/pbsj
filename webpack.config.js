@@ -32,6 +32,8 @@ Encore
 
     .addEntry('vue-recruiting', './assets/vue/Recruiting/recruiting.js')
     .addEntry('vue-departures', './assets/vue/Departures/departures.js')
+    .addStyleEntry('chat', './assets/styles/chat.sass')
+    .addEntry('vue-chat', './assets/vue/Chat/chat.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()

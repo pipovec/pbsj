@@ -1,0 +1,263 @@
+@use 'variables'
+
+:root
+  --primary-gray: #64748b
+  --primary-hover: #475569
+  --card-bg: #ffffff
+  --card-border: rgba(0, 0, 0, 0.08)
+  --text-primary: #374151
+  --text-secondary: #6b7280
+  --accent-green: #059669
+
+body
+  background: variables.$body-bg
+  min-height: 100vh
+  padding-bottom: 3rem
+
+.chat-wrapper
+  max-width: 860px
+  margin: 2rem auto
+  padding: 0 1rem
+
+.chat-toolbar
+  background: var(--card-bg)
+  border: 1px solid var(--card-border)
+  border-radius: 10px
+  padding: 1rem 1.25rem
+  margin-bottom: 1rem
+  box-shadow: 0 1px 4px rgba(0,0,0,0.06)
+
+.toolbar-top
+  display: flex
+  align-items: baseline
+  gap: 0.75rem
+  margin-bottom: 1rem
+
+.toolbar-title
+  font-size: 1.4rem
+  font-weight: 900
+  color: var(--text-primary)
+
+.total-count
+  font-size: 0.85rem
+  color: var(--text-secondary)
+
+.chat-form
+  display: flex
+  flex-direction: column
+  gap: 0.5rem
+
+.form-row
+  display: flex
+  align-items: flex-end
+  gap: 0.75rem
+  flex-wrap: wrap
+
+.form-group
+  display: flex
+  flex-direction: column
+  gap: 0.3rem
+
+.form-group--grow
+  flex: 1
+  min-width: 200px
+
+.form-label
+  font-size: 0.78rem
+  color: var(--text-secondary)
+  font-weight: 600
+  text-transform: uppercase
+  letter-spacing: 0.04em
+
+.form-input
+  padding: 0.45rem 0.7rem
+  border-radius: 6px
+  border: 2px solid #d1d5db
+  background: #f9fafb
+  color: var(--text-primary)
+  font-size: 0.9rem
+  transition: border-color 0.15s
+  width: 100%
+  &:focus
+    outline: none
+    border-color: var(--primary-gray)
+  &:disabled
+    opacity: 0.5
+    cursor: not-allowed
+  &.input-error
+    border-color: #ef4444
+
+.form-input--sm
+  padding: 0.35rem 0.6rem
+  font-size: 0.85rem
+
+.nick-wrap
+  display: flex
+  flex-direction: column
+  gap: 0.2rem
+  width: 200px
+
+.reply-nick
+  width: 150px
+  flex-shrink: 0
+
+.field-error
+  font-size: 0.75rem
+  color: #ef4444
+
+.send-btn
+  padding: 0.45rem 1.25rem
+  border-radius: 6px
+  border: none
+  background: var(--primary-gray)
+  color: #fff
+  font-size: 0.9rem
+  font-weight: 700
+  cursor: pointer
+  transition: background 0.2s
+  white-space: nowrap
+  align-self: flex-end
+  height: 36px
+  &:hover:not(:disabled)
+    background: var(--primary-hover)
+  &:disabled
+    opacity: 0.45
+    cursor: not-allowed
+
+.send-btn--sm
+  padding: 0.35rem 0.9rem
+  font-size: 0.85rem
+  height: 32px
+
+.send-error
+  font-size: 0.85rem
+  color: #ef4444
+  margin-top: 0.25rem
+
+.send-success
+  font-size: 0.85rem
+  color: var(--accent-green)
+  margin-top: 0.25rem
+
+.messages-list
+  display: flex
+  flex-direction: column
+  gap: 0.6rem
+
+.message-card
+  background: var(--card-bg)
+  border: 1px solid var(--card-border)
+  border-radius: 10px
+  padding: 0.75rem 1rem
+  transition: background 0.15s
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05)
+  &:hover
+    background: #f9fafb
+
+.message-header
+  display: flex
+  align-items: baseline
+  gap: 0.75rem
+  margin-bottom: 0.35rem
+
+.message-nick
+  font-weight: 700
+  font-size: 0.9rem
+  color: var(--accent-green)
+
+.message-date
+  font-size: 0.75rem
+  color: var(--text-secondary)
+
+.message-text
+  font-size: 0.9rem
+  color: var(--text-primary)
+  line-height: 1.5
+  word-break: break-word
+
+.message-actions
+  margin-top: 0.5rem
+
+.reply-toggle
+  background: none
+  border: none
+  color: var(--text-secondary)
+  font-size: 0.8rem
+  cursor: pointer
+  padding: 0
+  transition: color 0.15s
+  &:hover
+    color: var(--text-primary)
+
+.replies-section
+  margin-top: 0.75rem
+  padding-top: 0.75rem
+  border-top: 1px solid #e5e7eb
+  display: flex
+  flex-direction: column
+  gap: 0.5rem
+
+.replies-list
+  display: flex
+  flex-direction: column
+  gap: 0.4rem
+
+.reply-card
+  background: #f3f4f6
+  border-left: 3px solid var(--accent-green)
+  border-radius: 0 8px 8px 0
+  padding: 0.5rem 0.75rem
+
+.reply-form
+  margin-top: 0.25rem
+
+.pagination
+  display: flex
+  align-items: center
+  justify-content: center
+  gap: 1rem
+  margin-top: 1.5rem
+
+.page-btn
+  padding: 0.45rem 1rem
+  border-radius: 6px
+  border: 1px solid #d1d5db
+  background: var(--card-bg)
+  color: var(--text-primary)
+  font-size: 0.88rem
+  font-weight: 600
+  cursor: pointer
+  transition: background 0.2s
+  &:hover:not(:disabled)
+    background: #f3f4f6
+  &:disabled
+    opacity: 0.35
+    cursor: default
+
+.page-info
+  font-size: 0.9rem
+  color: var(--text-secondary)
+  min-width: 80px
+  text-align: center
+
+.state-msg
+  text-align: center
+  padding: 3rem
+  color: var(--text-secondary)
+  font-size: 1rem
+
+.state-msg--sm
+  padding: 0.75rem
+  font-size: 0.85rem
+
+@media (max-width: 640px)
+  .form-row
+    flex-direction: column
+    align-items: stretch
+  .nick-wrap
+    width: 100%
+  .reply-nick
+    width: 100%
+  .send-btn
+    width: 100%
+    align-self: stretch

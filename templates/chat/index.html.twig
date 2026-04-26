@@ -1,0 +1,29 @@
+{% extends 'vue-base.html.twig' %}
+
+{% block title %}Pinnwand - PBSJ Community{% endblock %}
+
+{% block meta %}
+    <meta name="description" content="Gemeinschafts-Pinnwand für PBSJ World of Tanks Spieler">
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('chat') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('vue-chat') }}
+{% endblock %}
+
+{% block content %}
+    <main>
+        <noscript>
+            <div class="noscript-warning">
+                <strong>
+                    JavaScript ist erforderlich. Bitte aktivieren Sie JavaScript, um fortzufahren.
+                </strong>
+            </div>
+        </noscript>
+        <div id="chat"></div>
+    </main>
+{% endblock %}
