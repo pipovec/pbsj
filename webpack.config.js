@@ -67,7 +67,9 @@ Encore
     })
 
     // enables Sass/SCSS support
-    .enableSassLoader()
+    .enableSassLoader(options => {
+        options.api = 'modern';
+    })
     .splitEntryChunks()
     .enableVueLoader()
     .enablePostCssLoader((options) => {
