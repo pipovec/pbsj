@@ -37,24 +37,24 @@
       </div>
     </div>
 
-    <user-detail-modal
-        v-if="showModal"
-        @close-user-detail="showModal = false"
-        :user="selectedUser"
+    <DepartureModal
+        v-if="selectedPlayer"
+        v-model="showModal"
+        :player="selectedPlayer"
     />
   </div>
 </template>
 
 <script setup>
 import { departuresStore } from "../store";
-import {ref, defineAsyncComponent} from "vue";
+import { ref, defineAsyncComponent } from "vue";
 
-const userDetailModal = defineAsyncComponent(() => import('../../Recruiting/components/userDetailModal.vue'))
+const DepartureModal = defineAsyncComponent(() => import('./DepartureModal.vue'))
 
 const store = departuresStore();
 
-let showModal = ref(false)
-let selectedUser = ref({name: '', account_id: null})
+const showModal = ref(false)
+const selectedPlayer = ref(null)
 const cdnUrl = ref('https://cdn.fpcstat.cz')
 
 function backgroundColor(wn8) {
@@ -71,13 +71,8 @@ function winrate(battles, wins) {
 }
 
 function openPlayerDetail(player) {
-  if (!showModal.value) {
-    sendClick(player)
-  }
-  selectedUser.value = {
-    name: player.nickname,
-    account_id: player.account_id
-  }
+  if (!showModal.value) sendClick(player)
+  selectedPlayer.value = player
   showModal.value = true
 }
 
