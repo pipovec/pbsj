@@ -41,7 +41,7 @@ defineProps({
 .link {
   font-weight: 800;
   font-size: 1.05rem;
-  color: #2563eb;
+  color: var(--primary-color);
   text-decoration: none;
   letter-spacing: 0.06em;
   padding: 0.55rem 1.25rem;

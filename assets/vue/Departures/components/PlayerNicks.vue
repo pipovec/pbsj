@@ -32,7 +32,7 @@ defineProps({
 .section-icon {
   font-size: 0.75rem;
   font-weight: 700;
-  color: #2563eb;
+  color: var(--primary-color);
   opacity: 0.8;
   line-height: 1;
 }
@@ -41,7 +41,7 @@ defineProps({
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.07em;
-  color: #cbd5e1;
+  color: var(--text-secondary);
 }
 
 .nicks-list {
@@ -53,10 +53,10 @@ defineProps({
 .nick-tag {
   font-family: 'Courier New', Courier, monospace;
   font-size: 0.8rem;
-  color: #f8fafc;
+  color: var(--text-primary);
   background: rgba(37, 99, 235, 0.12);
   border: 1px solid rgba(37, 99, 235, 0.25);
-  border-left: 3px solid #2563eb;
+  border-left: 3px solid var(--primary-color);
   padding: 0.2rem 0.6rem 0.2rem 0.5rem;
   border-radius: 4px;
 }

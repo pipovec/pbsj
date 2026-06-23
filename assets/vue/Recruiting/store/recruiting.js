@@ -9,7 +9,7 @@ export const recruitingStore= defineStore({
         baseUrl: 'https://api2.fpcstat.cz',
         counter: 42,
         players: {},
-        filterWnFrom: null,
+        filterWnFrom: 1500,
         filterWnTo: null,
         filterNickName: null,
         tank_1: false,
@@ -94,7 +94,7 @@ export const recruitingStore= defineStore({
         },
 
         resetFilters() {
-            this.filterWnFrom = null
+            this.filterWnFrom = 1500
             this.filterWnTo = null
             this.filterNickName = null
             this.tank_1 = false
