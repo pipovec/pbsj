@@ -188,6 +188,7 @@ watch(() => props.modelValue, async (open) => {
     const playerData = Object.values(wotResult.value.data)[0]
     if (playerData === null) {
       playerDeleted.value = true
+      fetch(`/api/departures/players/${accountId}/mark-deleted`, { method: 'POST' }).catch(() => {})
     } else {
       if (playerData.last_battle_time) lastBattleTime.value = formatTimestamp(playerData.last_battle_time)
       if (playerData.clan_id) currentClanId.value = playerData.clan_id

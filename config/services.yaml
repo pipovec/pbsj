@@ -6,6 +6,8 @@
 parameters:
     api3_url: '%env(API3_URL)%'
     chat_api_key: '%env(CHAT_API_KEY)%'
+    api2_login_nickname: '%env(API2_LOGIN_NICKNAME)%'
+    api2_login_password: '%env(API2_LOGIN_PASSWORD)%'
 
 services:
     # default configuration for services in *this* file
@@ -26,6 +28,11 @@ services:
         arguments:
             $api3Url: '%api3_url%'
             $chatApiKey: '%chat_api_key%'
+
+    App\Controller\DeparturesController:
+        arguments:
+            $api2LoginNickname: '%api2_login_nickname%'
+            $api2LoginPassword: '%api2_login_password%'
 
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
