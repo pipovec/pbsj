@@ -53,7 +53,7 @@ const DepartureModal = defineAsyncComponent(() => import('./DepartureModal.vue')
 const store = departuresStore();
 const showModal = ref(false)
 const selectedPlayer = ref(null)
-const cdnUrl = ref('https://cdn.fpcstat.cz')
+const cdnUrl = ref('https://cdn.fpcstat.cz/clan-icons')
 
 function wn8Style(wn8) {
   return { 'background-color': wn8color(wn8) }

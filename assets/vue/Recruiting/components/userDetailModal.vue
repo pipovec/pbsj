@@ -42,7 +42,7 @@
           <hr class="divider"/>
           <div class="clans-grid">
             <div v-for="(clan, index) in playerClans" :key="index" class="clan-item">
-              <img :src="clan.emblem_small" :alt="clan.name" :title="clan.name" width="36" height="36">
+              <img :src="clanEmblem(clan.emblem_small)" :alt="clan.name" :title="clan.name" width="36" height="36">
               <span class="clan-abbr">{{ clan.abbreviation }}</span>
             </div>
           </div>
@@ -78,10 +78,21 @@ const props = defineProps({
   }
 })
 
+const CDN_URL = 'https://cdn.fpcstat.cz/clan-icons'
+
 const playerClans = ref([])
 const lastBattleTime = ref(0)
 const playerNicks = ref([])
 const playerStats = ref({})
+
+function clanEmblem(emblemSmall) {
+  return emblemSmall
+    .replace('https://eu.wargaming.net/clans/media/clans/emblems', CDN_URL)
+    // Na CDN je zatiaľ nahratý len rozmer 195x195, menšie varianty (32x32 a pod.) tam nie sú –
+    // preto sa vždy pýtame na veľký súbor a zmenšíme ho cez width/height v šablóne.
+    .replace(/emblem_\d+x\d+\.png$/, 'emblem_195x195.png')
+    .replace('.png', '.webp')
+}
 
 function winrate(battles, wins) {
   return ((wins / battles) * 100).toFixed(2)

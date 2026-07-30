@@ -78,7 +78,7 @@
             </div>
             <div class="clans-scroll">
               <div v-for="clan in playerClans" :key="clan.abbreviation" class="clan-chip" :title="clan.name">
-                <img :src="clan.emblem_small" :alt="clan.name" width="28" height="28" class="clan-emblem" />
+                <img :src="clanEmblem(clan.emblem_small)" :alt="clan.name" width="28" height="28" class="clan-emblem" />
                 <span class="clan-abbr">{{ clan.abbreviation }}</span>
               </div>
             </div>
@@ -103,7 +103,7 @@ const PlayerCurrentClan = defineAsyncComponent(() => import('./PlayerCurrentClan
 const PlayerNicks = defineAsyncComponent(() => import('./PlayerNicks.vue'))
 const PlayerLinks = defineAsyncComponent(() => import('./PlayerLinks.vue'))
 
-const CDN_URL = 'https://cdn.fpcstat.cz'
+const CDN_URL = 'https://cdn.fpcstat.cz/clan-icons'
 const API2_URL = 'https://api2.fpcstat.cz'
 const WOT_APP_ID = '883ff6ceefb13177357ffea34d6fb06f'
 
@@ -127,6 +127,15 @@ const emblemWebp = computed(() => {
     .replace('https://eu.wargaming.net/clans/media/clans/emblems', CDN_URL)
     .replace('.png', '.webp')
 })
+
+function clanEmblem(emblemSmall) {
+  return emblemSmall
+    .replace('https://eu.wargaming.net/clans/media/clans/emblems', CDN_URL)
+    // Na CDN je zatiaľ nahratý len rozmer 195x195, menšie varianty (32x32 a pod.) tam nie sú –
+    // preto sa vždy pýtame na veľký súbor a zmenšíme ho cez width/height v šablóne.
+    .replace(/emblem_\d+x\d+\.png$/, 'emblem_195x195.png')
+    .replace('.png', '.webp')
+}
 
 function wn8Color(wn8) {
   if (wn8 < 450) return 'grey'
