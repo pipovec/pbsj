@@ -104,7 +104,7 @@ const PlayerNicks = defineAsyncComponent(() => import('./PlayerNicks.vue'))
 const PlayerLinks = defineAsyncComponent(() => import('./PlayerLinks.vue'))
 
 const CDN_URL = 'https://cdn.fpcstat.cz/clan-icons'
-const API2_URL = 'https://api2.fpcstat.cz'
+const API3_URL = 'https://api3.fpcstat.cz'
 const WOT_APP_ID = '883ff6ceefb13177357ffea34d6fb06f'
 
 const props = defineProps({
@@ -182,8 +182,8 @@ watch(() => props.modelValue, async (open) => {
   const jsonHeaders = { Accept: 'application/json' }
 
   const [clansResult, nicksResult, wotResult] = await Promise.allSettled([
-    fetch(`${API2_URL}/api/player_clans/${accountId}`, { headers: jsonHeaders }).then(r => r.json()),
-    fetch(`${API2_URL}/api/player_nicks/${accountId}`, { headers: jsonHeaders }).then(r => r.json()),
+    fetch(`${API3_URL}/api/player-clans/${accountId}`, { headers: jsonHeaders }).then(r => r.json()),
+    fetch(`${API3_URL}/api/player-nicks/${accountId}`, { headers: jsonHeaders }).then(r => r.json()),
     fetch(`https://api.worldoftanks.eu/wot/account/info/?application_id=${WOT_APP_ID}&fields=last_battle_time,clan_id,statistics.all&account_id=${accountId}`).then(r => r.json()),
   ])
 
