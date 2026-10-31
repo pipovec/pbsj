@@ -34,6 +34,7 @@ Encore
     .addEntry('vue-departures', './assets/vue/Departures/departures.js')
     .addStyleEntry('chat', './assets/styles/chat.sass')
     .addEntry('vue-chat', './assets/vue/Chat/chat.js')
+    .addEntry('tankopedia', './assets/tankopedia.js')
 
     // When enabled, Webpack "splits" your files into smaller pieces for greater optimization.
     .splitEntryChunks()

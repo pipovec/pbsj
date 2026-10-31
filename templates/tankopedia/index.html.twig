@@ -1,0 +1,94 @@
+{% extends 'vue-base.html.twig' %}
+
+{% set romanTiers = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI'] %}
+
+{% block title %}Tankopedia - PBSJ Community{% endblock %}
+
+{% block meta %}
+    <meta name="description" content="Welche Panzer in World of Tanks haben die stärkste Panzerung, den höchsten Durchschlag oder sind am schnellsten?">
+{% endblock %}
+
+{% block stylesheets %}
+    {{ parent() }}
+    {{ encore_entry_link_tags('tankopedia') }}
+{% endblock %}
+
+{% block javascripts %}
+    {{ encore_entry_script_tags('tankopedia') }}
+{% endblock %}
+
+{% block content %}
+    <main class="tankopedia-wrapper">
+        <div class="tankopedia-toolbar">
+            <h1 class="toolbar-title">Tankopedia</h1>
+
+            <form action="{{ path('app_tankopedia') }}" method="get" class="tankopedia-form" data-auto-submit>
+                <div class="form-group form-group--question">
+                    <label class="form-label" for="question">Welcher Panzer</label>
+                    <select id="question" name="question" class="form-select">
+                        <option value="">– Frage auswählen –</option>
+                        {% for key, item in questions %}
+                            <option value="{{ key }}" {% if question == key %}selected{% endif %}>{{ item.label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="tier">Stufe</label>
+                    <select id="tier" name="tier" class="form-select">
+                        <option value="">Alle Stufen</option>
+                        {% for level in 1..11 %}
+                            <option value="{{ level }}" {% if tier == level %}selected{% endif %}>{{ romanTiers[level - 1] }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label class="form-label" for="type">Panzertyp</label>
+                    <select id="type" name="type" class="form-select">
+                        <option value="">Alle Typen</option>
+                        {% for key, label in tankTypes %}
+                            <option value="{{ key }}" {% if type == key %}selected{% endif %}>{{ label }}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <noscript>
+                    <button type="submit" class="submit-btn">Anzeigen</button>
+                </noscript>
+            </form>
+
+            <p class="toolbar-note">Die Werte gelten für die Grundkonfiguration (nicht erforscht) des Panzers.</p>
+        </div>
+
+        {% if question is null %}
+            <p class="tankopedia-empty">Wähle eine Frage, und es werden die 10 Panzer angezeigt, die am besten passen.</p>
+        {% elseif error %}
+            <p class="tankopedia-empty">Die Daten konnten nicht geladen werden, bitte versuche es später erneut.</p>
+        {% elseif tanks is empty %}
+            <p class="tankopedia-empty">Keine Panzer entsprechen der Auswahl.</p>
+        {% else %}
+            <div class="tankopedia-results">
+                {% for tank in tanks %}
+                    <article class="tank-card">
+                        <span class="tank-rank">{{ loop.index }}</span>
+                        {% if tank.image %}
+                            <img src="{{ tank.image }}" alt="{{ tank.name }}" class="tank-image" width="160" height="100" loading="lazy">
+                        {% endif %}
+                        <h2 class="tank-name">{{ tank.name }}</h2>
+                        <div class="tank-meta">
+                            {% if tank.tier %}<span class="tank-tier">{{ romanTiers[tank.tier - 1] ?? tank.tier }}</span>{% endif %}
+                            {% if tank.nation %}<span>{{ nations[tank.nation] ?? tank.nation|upper }}</span>{% endif %}
+                            {% if tank.type %}<span>{{ tankTypes[tank.type] ?? tank.type }}</span>{% endif %}
+                        </div>
+                        <div class="tank-value">
+                            {# German format, without trailing zeros: 120.000 / 5,7 / 0,22 #}
+                            {{ tank.value|number_format(2, ',', '.')|trim('0', 'right')|trim(',', 'right') }}
+                            <span class="tank-unit">{{ questions[question].unit }}</span>
+                        </div>
+                    </article>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </main>
+{% endblock %}

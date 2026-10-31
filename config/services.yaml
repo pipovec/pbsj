@@ -29,6 +29,10 @@ services:
             $api3Url: '%api3_url%'
             $chatApiKey: '%chat_api_key%'
 
+    App\Controller\TankopediaController:
+        arguments:
+            $api3Url: '%api3_url%'
+
     App\Controller\DeparturesController:
         arguments:
             $api2LoginNickname: '%api2_login_nickname%'
