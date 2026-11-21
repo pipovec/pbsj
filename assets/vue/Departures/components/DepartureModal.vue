@@ -70,6 +70,20 @@
             </div>
           </div>
 
+          <!-- Recent activity (always rendered so the layout does not shift while loading) -->
+          <div class="section">
+            <div class="section-header">
+              <span class="section-icon">⚔</span>
+              <span class="section-label">Letzte Gefechte</span>
+            </div>
+            <div class="activity-grid">
+              <div v-for="period in activityPeriods" :key="period.key" class="activity-card">
+                <div class="activity-value">{{ recentBattles ? recentBattles[period.key].toLocaleString() : '—' }}</div>
+                <div class="activity-label">{{ period.label }}</div>
+              </div>
+            </div>
+          </div>
+
           <!-- Clan history -->
           <div v-if="playerClans.length" class="section">
             <div class="section-header">
@@ -104,6 +118,7 @@ const PlayerNicks = defineAsyncComponent(() => import('./PlayerNicks.vue'))
 const PlayerLinks = defineAsyncComponent(() => import('./PlayerLinks.vue'))
 
 const CDN_URL = 'https://cdn.fpcstat.cz/clan-icons'
+const API2_URL = 'https://api2.fpcstat.cz'
 const API3_URL = 'https://api3.fpcstat.cz'
 const WOT_APP_ID = '883ff6ceefb13177357ffea34d6fb06f'
 
@@ -120,6 +135,13 @@ const lastBattleTime = ref('')
 const playerDeleted = ref(false)
 const currentClanId = ref(null)
 const wotStats = ref(null)
+const recentBattles = ref(null)
+
+const activityPeriods = [
+  { key: 'battles_last_7', label: '7 Tage' },
+  { key: 'battles_last_14', label: '14 Tage' },
+  { key: 'battles_last_28', label: '28 Tage' },
+]
 
 const emblemWebp = computed(() => {
   if (!props.player.emblems_large) return null
@@ -177,15 +199,21 @@ watch(() => props.modelValue, async (open) => {
   playerDeleted.value = false
   currentClanId.value = null
   wotStats.value = null
+  recentBattles.value = null
 
   const accountId = props.player.account_id
   const jsonHeaders = { Accept: 'application/json' }
 
-  const [clansResult, nicksResult, wotResult] = await Promise.allSettled([
+  const [clansResult, nicksResult, wotResult, battlesResult] = await Promise.allSettled([
     fetch(`${API3_URL}/api/player-clans/${accountId}`, { headers: jsonHeaders }).then(r => r.json()),
     fetch(`${API3_URL}/api/player-nicks/${accountId}`, { headers: jsonHeaders }).then(r => r.json()),
     fetch(`https://api.worldoftanks.eu/wot/account/info/?application_id=${WOT_APP_ID}&fields=last_battle_time,clan_id,statistics.all&account_id=${accountId}`).then(r => r.json()),
+    fetch(`${API2_URL}/api/players_stat_all/${accountId}/battles`, { headers: jsonHeaders }).then(r => r.ok ? r.json() : Promise.reject(new Error(r.status))),
   ])
+
+  if (battlesResult.status === 'fulfilled' && activityPeriods.every(({ key }) => Number.isFinite(battlesResult.value?.[key]))) {
+    recentBattles.value = battlesResult.value
+  }
 
   if (clansResult.status === 'fulfilled') {
     playerClans.value = Array.isArray(clansResult.value) ? clansResult.value : []
@@ -415,6 +443,36 @@ watch(() => props.modelValue, async (open) => {
   text-transform: uppercase;
   letter-spacing: 0.07em;
   color: var(--text-secondary);
+}
+
+.activity-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.5rem;
+}
+
+.activity-card {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  padding: 0.55rem 0.5rem;
+  text-align: center;
+  min-height: 3.6rem;
+}
+
+.activity-value {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  line-height: 1.2;
+}
+
+.activity-label {
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+  margin-top: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
 }
 
 .clans-scroll {
