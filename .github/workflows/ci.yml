@@ -31,6 +31,10 @@ jobs:
       - name: Install PHP dependencies
         run: composer install --no-interaction --prefer-dist --no-scripts
 
+      - name: Prepare environment
+        # .env is not committed; real environment variables above supply all values
+        run: touch .env
+
       - name: Validate composer.json
         run: composer validate --strict --no-check-publish
 
