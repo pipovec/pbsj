@@ -1,0 +1,13 @@
+title = "gitleaks config"
+
+[extend]
+  useDefault = true
+
+[allowlist]
+  description = "Placeholder and test-only values, not real secrets"
+  paths = [
+    '''\.env\.example''',
+    '''\.env\.test''',
+    '''\.env\.local''',
+    '''tests/''',
+  ]

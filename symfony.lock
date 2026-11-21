@@ -8,6 +8,9 @@
             "ref": "87424683adc81d7dc305eefec1fced883084aab9"
         }
     },
+    "phpstan/phpstan": {
+        "version": "2.3.7"
+    },
     "phpunit/phpunit": {
         "version": "9.6",
         "recipe": {
