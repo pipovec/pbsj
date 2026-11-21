@@ -90,7 +90,7 @@
     },
     "require-dev": {
         "phpstan/phpstan": "^2.3",
-        "phpunit/phpunit": "^9.5",
+        "phpunit/phpunit": "^13.4",
         "symfony/browser-kit": "^8.0",
         "symfony/css-selector": "^8.0",
         "symfony/debug-bundle": "^8.0",
