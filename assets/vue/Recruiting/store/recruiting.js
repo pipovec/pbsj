@@ -1,9 +1,7 @@
 import { defineStore } from "pinia";
 import axios from "axios";
 
-export const recruitingStore= defineStore({
-    id: 'recruiting',
-
+export const recruitingStore = defineStore('recruiting', {
     state: () => ({
         baseApiUrl: 'https://api2.fpcstat.cz/api',
         baseUrl: 'https://api2.fpcstat.cz',
